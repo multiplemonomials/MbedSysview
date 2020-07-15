@@ -1,0 +1,2 @@
+## mbed-cmake Example Project
+This project serves as an example for how to use mbed-cmake in a cmake project.  It contains the minimum extra files needed to include mbed-cmake, as well as a small hello world program that you can use to make sure your dev tool setup is working.  It's a good place to start your own projects off of!
