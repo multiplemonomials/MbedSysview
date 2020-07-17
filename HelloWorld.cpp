@@ -1,13 +1,13 @@
 #include "mbed.h"
 
-Serial pc(USBTX, USBRX);
+BufferedSerial serial(USBTX, USBRX, 115200);
 
 int main() {
-    pc.baud(115200);
 
 	while(true)
 	{
-		pc.printf("Hello world!\n");
-		wait(1);
+		char const message[] = "Hello world!\n";
+		serial.write(message, sizeof(message));
+		ThisThread::sleep_for(1000);
 	}
 }

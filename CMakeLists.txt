@@ -7,6 +7,7 @@ include(cmake/UploadMethodConfig.cmake)
 
 # load compilers and flags
 # -------------------------------------------------------------
+
 include(mbed-cmake/mbed-cmake.cmake)
 
 project(mbed-cmake-test-project LANGUAGES NONE)
