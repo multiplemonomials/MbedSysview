@@ -62,7 +62,15 @@ endif()
 set(STM32CUBE_UPLOAD_ENABLED TRUE)
 
 if(STM32CUBE_UPLOAD_ENABLED)
+
+    # create option to select the probe to connect to
+    set(STM32CUBE_PROBE_SN "" CACHE STRING "Serial number of the ST-Link probe to connect to.  If blank, will connect to any probe.")
+
     set(STM32CUBE_CONNECT_COMMAND -c port=SWD reset=HWrst)
-    set(STM32CUBE_WRITE_ADDRESS 0x08000000)
     set(STM32CUBE_GDBSERVER_ARGS --swd)
+
+    if(NOT "${STM32CUBE_PROBE_SN}" STREQUAL "")
+        list(APPEND STM32CUBE_CONNECT_COMMAND sn=${STM32CUBE_PROBE_SN})
+        list(APPEND STM32CUBE_GDBSERVER_ARGS --serial-number ${STM32CUBE_PROBE_SN})
+    endif()
 endif()
