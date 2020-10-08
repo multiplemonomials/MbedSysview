@@ -20,7 +20,7 @@ set(MBED_UPLOAD_ENABLED TRUE)
 set(JLINK_UPLOAD_ENABLED FALSE)
 
 if(JLINK_UPLOAD_ENABLED)
-    set(JLINK_CPU_NAME LPC1768)
+    set(JLINK_CPU_NAME STM32F429ZI)
     set(JLINK_JTAG_SPEED 4000)
 endif()
 
@@ -37,13 +37,13 @@ endif()
 # Config options for OPENOCD
 # -------------------------------------------------------------
 
-set(OPENOCD_UPLOAD_ENABLED FALSE)
+set(OPENOCD_UPLOAD_ENABLED TRUE)
 
 if(OPENOCD_UPLOAD_ENABLED)
     set(OPENOCD_CHIP_CONFIG_COMMANDS
-        -f ${OpenOCD_SCRIPT_DIR}/interface/cmsis-dap.cfg
-        -f ${OpenOCD_SCRIPT_DIR}/target/lpc17xx.cfg
-        -c "gdb_memory_map disable")
+        -f ${CMAKE_CURRENT_LIST_DIR}/stm32f429-disco.cfg
+        -c "gdb_memory_map disable" # prevents OpenOCD crash on GDB connect
+        )
 endif()
 
 # Config options for NXPPROG
@@ -56,3 +56,13 @@ if(NXPPROG_UPLOAD_ENABLED)
     set(NXPPROG_BAUD 115200)
 endif()
 
+# Config options for STM32Cube
+# -------------------------------------------------------------
+
+set(STM32CUBE_UPLOAD_ENABLED TRUE)
+
+if(STM32CUBE_UPLOAD_ENABLED)
+    set(STM32CUBE_CONNECT_COMMAND -c port=SWD reset=HWrst)
+    set(STM32CUBE_WRITE_ADDRESS 0x08000000)
+    set(STM32CUBE_GDBSERVER_ARGS --swd)
+endif()
