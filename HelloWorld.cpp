@@ -1,13 +1,14 @@
 #include "mbed.h"
 
 BufferedSerial serial(USBTX, USBRX, 115200);
+FILE* pc;
 
-int main() {
-
+int main()
+{
+	pc = fdopen(&serial, "w");
 	while(true)
 	{
-		char const message[] = "Hello world!\n";
-		serial.write(message, sizeof(message));
-		ThisThread::sleep_for(1000);
+		fprintf(pc, "Hello world from mbed-cmake!");
+		ThisThread::sleep_for(1s);
 	}
 }
