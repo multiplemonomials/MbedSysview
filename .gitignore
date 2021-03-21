@@ -1,2 +1,6 @@
 # command line build folder
 build/
+
+# mbed-cmake generated
+.idea/runConfigurations/*
+.vscode/launch.json

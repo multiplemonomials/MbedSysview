@@ -8,7 +8,7 @@ int main()
 	pc = fdopen(&serial, "w");
 	while(true)
 	{
-		fprintf(pc, "Hello world from mbed-cmake!");
+		fprintf(pc, "Hello world from mbed-cmake!\n");
 		ThisThread::sleep_for(1s);
 	}
 }

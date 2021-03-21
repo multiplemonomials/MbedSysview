@@ -21,3 +21,4 @@ add_mbed_executable(hello_world HelloWorld.cpp)
 # -------------------------------------------------------------
 
 mbed_cmake_print_build_report()
+mbed_cmake_finalize()
