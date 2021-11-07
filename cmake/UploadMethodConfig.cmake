@@ -15,6 +15,11 @@ set(GDB_PORT 23331)
 set(MBED_UPLOAD_ENABLED TRUE)
 set(MBED_RESET_BAUDRATE 115200)
 
+# Config options for MBEDCOPY
+# -------------------------------------------------------------
+
+set(MBEDCOPY_UPLOAD_ENABLED TRUE)
+
 # Config options for JLINK
 # -------------------------------------------------------------
 
