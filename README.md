@@ -5,10 +5,11 @@
 MbedSysview is a library that connects the Mbed OS task scheduler to the [SEGGER SystemView](https://www.segger.com/products/development-tools/systemview/) profiling & analysis software.  SystemView is an amazingly useful tool  which shows a complete picture of all task executions, thread switches, and other events of interest in your application.  It works by having code running on the target log messages to a low-overhead buffer when events such as task switches occur.  These events are then read out over a J-Link debugger and processed by the host application to generate a complete picture of activity on the device.  The entire system is extremely efficient and can log tens of thousands of events per second with microsecond timing accuracy.   
 
 ## What Can MbedSysview Do?
-[Contexts View](https://app.box.com/shared/static/638t8pp9h89vy1ustlb6jqx28x2sinmk.png)
+![Contexts View](https://app.box.com/shared/static/638t8pp9h89vy1ustlb6jqx28x2sinmk.png)
 - Show all the thread activity in your application
 - Profile thread executions and other events of interest with microsecond accuracy and very little overhead
 - Display aggregate statistics, such as how much CPU each thread is consuming and how long it runs for on each execution
+- Provide an extremely handy way to visualize and debug resource issues on embedded systems!
 
 ## What you Need to Use SystemView
 - MCU that is [supported by SEGGER J-Link](https://www.segger.com/supported-devices/jlink/)
