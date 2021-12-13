@@ -142,7 +142,7 @@
 #define MBED_CONF_PPP_MBED_EVENT_QUEUE                                    0                                                            // set by library:ppp
 #define MBED_CONF_PPP_THREAD_STACKSIZE                                    816                                                          // set by library:ppp
 #define MBED_CONF_RTOS_API_PRESENT                                        1                                                            // set by library:rtos-api
-#define MBED_CONF_RTOS_ENABLE_ALL_RTX_EVENTS                              0                                                            // set by library:rtos
+#define MBED_CONF_RTOS_ENABLE_ALL_RTX_EVENTS                              1                                                            // set by application[*]
 #define MBED_CONF_RTOS_EVFLAGS_NUM                                        0                                                            // set by library:rtos
 #define MBED_CONF_RTOS_IDLE_THREAD_STACK_SIZE                             512                                                          // set by library:rtos
 #define MBED_CONF_RTOS_IDLE_THREAD_STACK_SIZE_DEBUG_EXTRA                 128                                                          // set by library:rtos[STM]

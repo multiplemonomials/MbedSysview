@@ -86,9 +86,17 @@ extern "C" void EvrRtxThreadUnblocked (osThreadId_t thread_id, uint32_t ret_val)
 	SEGGER_SYSVIEW_OnTaskStartReady(reinterpret_cast<uint32_t>(thread_id));
 }
 
+// This is called when a thread starts waiting on something, like a timeout or a semaphore
 extern "C" void EvrRtxThreadBlocked (osThreadId_t thread_id, uint32_t timeout)
 {
 	SEGGER_SYSVIEW_OnTaskStopReady(reinterpret_cast<uint32_t>(thread_id), 0); // currently we don't have cause information
+}
+
+// This is called when a thread is preempted by another thread, but is still able to be run.
+extern "C" void EvrRtxThreadPreempted (osThreadId_t thread_id)
+{
+	SEGGER_SYSVIEW_OnTaskStopExec();
+	SEGGER_SYSVIEW_OnTaskStartReady(reinterpret_cast<uint32_t>(thread_id)); // currently we don't have cause information
 }
 
 extern "C" void EvrRtxThreadSwitched(osThreadId_t thread_id)
