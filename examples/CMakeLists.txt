@@ -1,0 +1,2 @@
+add_mbed_executable(ThreeThreads ThreeThreads.cpp)
+target_link_libraries(ThreeThreads MbedSysview mbed-os)

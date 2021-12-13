@@ -10,12 +10,14 @@ include(cmake/UploadMethodConfig.cmake)
 
 include(mbed-cmake/mbed-cmake.cmake)
 
-project(mbed-cmake-test-project LANGUAGES NONE)
+project(MbedSysview LANGUAGES NONE)
 
 # recurse to subdirectories
 # -------------------------------------------------------------
 
-add_mbed_executable(hello_world HelloWorld.cpp)
+add_subdirectory(SEGGER-SystemView)
+add_subdirectory(MbedSysview)
+add_subdirectory(examples)
 
 # build report
 # -------------------------------------------------------------

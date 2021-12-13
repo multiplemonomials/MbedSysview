@@ -1,5 +1,6 @@
 # command line build folder
 build/
+cmake-build-*/
 
 # mbed-cmake generated
 .idea/runConfigurations/*

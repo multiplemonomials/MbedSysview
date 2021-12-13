@@ -23,11 +23,12 @@ set(MBEDCOPY_UPLOAD_ENABLED TRUE)
 # Config options for JLINK
 # -------------------------------------------------------------
 
-set(JLINK_UPLOAD_ENABLED FALSE)
+set(JLINK_UPLOAD_ENABLED TRUE)
 
 if(JLINK_UPLOAD_ENABLED)
     set(JLINK_CPU_NAME STM32F429ZI)
     set(JLINK_CLOCK_SPEED 4000)
+    set(JLINK_UPLOAD_INTERFACE SWD)
 endif()
 
 # Config options for PYOCD
