@@ -2,19 +2,20 @@
 #### A way to visualize your multithreaded Mbed OS application like never before!
 ![Task Picture](https://app.box.com/shared/static/1a2hbqf2qcwzbaudxe43cg1l8one04bz.png)
 
-MbedSysview is a library that connects the Mbed OS task scheduler to the [SEGGER SystemView](https://www.segger.com/products/development-tools/systemview/) profiling & analysis software.  SystemView is an amazingly useful tool  which shows a complete picture of all task executions, thread switches, and other events of interest in your application.  It works by having code running on the target log messages to a low-overhead buffer when events such as task switches occur.  These events are then read out over a J-Link debugger and processed by the host application to generate a complete picture of activity on the device.  The entire system is extremely efficient and can log tens of thousands of events per second with microsecond timing accuracy.   
+MbedSysview is a library that connects the Mbed OS task scheduler to the [SEGGER SystemView](https://www.segger.com/products/development-tools/systemview/) profiling & analysis software.  SystemView is an amazingly useful tool  which shows a complete picture of all task executions, thread switches, and other events of interest in your application.  It works by having code running on the target log messages to a low-overhead buffer when events such as task switches occur.  These events are then read out over a J-Link debugger and processed by the host application to generate a complete picture of activity on the device.  The library is extremely efficient and can log tens of thousands of events per second with microsecond timing accuracy.   
 
 ## What Can MbedSysview Do?
 ![Contexts View](https://app.box.com/shared/static/638t8pp9h89vy1ustlb6jqx28x2sinmk.png)
 - Show all the thread activity in your application
 - Profile thread executions and other events of interest with microsecond accuracy and very little overhead
 - Display aggregate statistics, such as how much CPU each thread is consuming and how long it runs for on each execution
+- Be extended to display custom information, such as markers for events and printouts from the application
 - Provide an extremely handy way to visualize and debug resource issues on embedded systems!
 
 ## What you Need to Use SystemView
 - MCU that is [supported by SEGGER J-Link](https://www.segger.com/supported-devices/jlink/)
 - Any standalone J-Link debug probe, or a dev board with a J-Link On-Board
-  - Many Mbed boards, such as STM32 Nucleo boards, can have alternate firmware loaded that converts their debuggers into a J-Link On-Board
+  - Many Mbed boards, such as STM32 Nucleo boards, can have alternate firmware loaded that converts their debuggers into a J-Link On-Board.  [Instructions for Nucleo boards](https://www.segger.com/products/debug-probes/j-link/models/other-j-links/st-link-on-board/)
 - License for SEGGER SystemView.  SystemView is free for educational and hobby use.  For commercial use it costs roughly $1000 per seat.
 
 ## Setting Up the Library
@@ -56,7 +57,7 @@ If enabled, SystemView will be configured to use the Mbed OS us ticker for times
 ```
 MBED_SYSVIEW_APP_NAME
 ```
-This sets the name of your application as displayed in the SystemView viewer.
+This sets the name of your application as displayed in the SystemView viewer.  If unset, the name of the CMake project will be used.
 
 #### Integrating the Code with Mbed CLI 1
 For Mbed CLI 1, you should just be able to copy all the source files under the SEGGER-SystemView and MbedSysview folders into your project and Mbed CLI will build them.  However, you may also need to edit MbedSysview.cpp to hardcode values of the options (see above).
@@ -98,7 +99,7 @@ Note: Don't be fooled by the dialog box with a bunch of random OS details that p
 One of the coolest features of SystemView is markers.  Markers allow you to attach custom labels to specific events and time periods in the SystemView trace.  Markers are shown on the timeline view along with the threads, and are a great way to add some extra detail to the trace of your application.
 
 ![Markers Screenshot](https://app.box.com/shared/static/6ngymx22gy8ryh5wqosks6vvxc612yt6.png)
-This shows what markers look like on the timeline.  A time range is marked on Thread 3, and a single event is marked on Thread 1.
+This shows what markers look like on the timeline.  A time range is marked on Thread 3, and a single event is marked on Thread 1.  It's not visible here, but if you hover over the marker, you can see the name it was constructed with.
 
 Creating markers with MbedSysview is easy.  With vanilla SystemView you need to manually assign unique IDs to each marker and register them all from a specific callback, which can be a pain especially when integrating together multiple pieces of code that use them.  However, I used the power of C++ constructors to automate this away!  Simply constructing a `SysviewMarker` object will perform all the setup needed to get it to show on the timeline.
 
