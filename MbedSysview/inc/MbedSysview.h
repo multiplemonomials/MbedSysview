@@ -3,6 +3,8 @@
 #define _MBEDSYSVIEW_H
 
 #include <mbed.h>
+#include "SysviewMarkers.h"
+
 
 /**
  * @brief Interface between Mbed RTOS and SEGGER SystemView.  Once instantiated,

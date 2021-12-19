@@ -1,4 +1,5 @@
 #include "MbedSysview.h"
+#include "SysviewMarkers.h"
 
 #include "SEGGER_SYSVIEW.h"
 #include "SEGGER_RTT.h"
@@ -33,6 +34,9 @@ U32 SEGGER_SYSVIEW_X_GetTimestamp()
 void MbedSysview::sendSysDescCallback()
 {
 	SEGGER_SYSVIEW_SendSysDesc("N=" MBED_SYSVIEW_APP_NAME ",O=Mbed OS");
+
+	// Register all markers
+	SysviewMarker::registerMarkers();
 }
 
 // Change to 1 to print details about the contents of each task list.
@@ -96,7 +100,7 @@ extern "C" void EvrRtxThreadBlocked (osThreadId_t thread_id, uint32_t timeout)
 extern "C" void EvrRtxThreadPreempted (osThreadId_t thread_id)
 {
 	SEGGER_SYSVIEW_OnTaskStopExec();
-	SEGGER_SYSVIEW_OnTaskStartReady(reinterpret_cast<uint32_t>(thread_id)); // currently we don't have cause information
+	SEGGER_SYSVIEW_OnTaskStartReady(reinterpret_cast<uint32_t>(thread_id));
 }
 
 extern "C" void EvrRtxThreadSwitched(osThreadId_t thread_id)

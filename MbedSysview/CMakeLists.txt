@@ -1,8 +1,10 @@
 set(MBED_SYSVIEW_INCLUDES
-	inc/MbedSysview.h)
+	inc/MbedSysview.h
+	inc/SysviewMarkers.h)
 
 set(MBED_SYSVIEW_SOURCES
-	src/MbedSysview.cpp)
+	src/MbedSysview.cpp
+	src/SysviewMarkers.cpp)
 
 if(NOT DEFINED MBED_SYSVIEW_APP_NAME)
 	# Default SysView application name to be the CMake project name.
