@@ -94,8 +94,35 @@ Once you have code that runs MbedSysview flashed to your target, recording event
 
 Note: Don't be fooled by the dialog box with a bunch of random OS details that pops up when you start the application -- those are not things that you need to configure.  In fact, SystemView receives those details from the app itself when it connects.
 
+## Using Markers
+One of the coolest features of SystemView is markers.  Markers allow you to attach custom labels to specific events and time periods in the SystemView trace.  Markers are shown on the timeline view along with the threads, and are a great way to add some extra detail to the trace of your application.
+
+![Markers Screenshot](https://app.box.com/shared/static/6ngymx22gy8ryh5wqosks6vvxc612yt6.png)
+This shows what markers look like on the timeline.  A time range is marked on Thread 3, and a single event is marked on Thread 1.
+
+Creating markers with MbedSysview is easy.  With vanilla SystemView you need to manually assign unique IDs to each marker and register them all from a specific callback, which can be a pain especially when integrating together multiple pieces of code that use them.  However, I used the power of C++ constructors to automate this away!  Simply constructing a `SysviewMarker` object will perform all the setup needed to get it to show on the timeline.
+
+To create a marker, all you need to do is instantiate a global SystemView marker object with your name of choice:
+```cpp
+#include "SysviewMarkers.h"
+
+SysviewMarker myMarker("My Marker");
+```
+
+Then, when you want to show it on the timeline, you can just call:
+```cpp
+myMarker.markStart();
+```
+
+To mark the end of a range, you can then call:
+```cpp
+myMarker.markEnd();
+```
+
+As always, see the docs on this class for more details!
+
 ## TODOs
- - [ ] Implement marker support
+ - [X] Implement marker support
  - [ ] Write Mbed CLI 2 instructions
  - [ ] Implement a way to name ISRs (future feature!)
  - [ ] Implement SystemView-over-network support (future feature!)

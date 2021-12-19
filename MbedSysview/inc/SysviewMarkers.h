@@ -9,7 +9,7 @@
 
 /**
  * @brief Each instance of this class represents a marker on the SystemView timeline.  Markers can be
- * used both to indicate both when a single event happens, or to mark out the time period when a given process is
+ * used either to indicate when a single event happens, or to mark out the time period when a given process is
  * running.
  *
  * Each marker is constructed with a name, and the MbedSysview code will handle sending these names to SystemView
